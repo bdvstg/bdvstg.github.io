@@ -1,0 +1,33 @@
+
+<html>
+    <head>
+        <title>Hi there</title>
+    </head>
+    <body>
+        <div id="app1">
+            <p>{{ content }}</p>
+            <pre>{{ info }}</pre>
+            <button v-on:click="get_message">Reverse Message</button>
+        </div>
+    </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+<script>
+    var app1=new Vue({
+        el: '#app1',
+        data:{
+            content: window.location,
+            info: 'default info'
+        },
+        methods: {
+            get_message: function(){
+                axios
+                .get('./README.md')
+                .then(response => (this.info = response.data))
+            }
+        }
+    })
+
+</script>
