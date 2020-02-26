@@ -2,12 +2,18 @@
 <html>
     <head>
         <title>Hi there</title>
+        <link rel="stylesheet" href="frame.css">
     </head>
     <body>
-        <div id="app1">
-            <p>{{ content }}</p>
-            <pre>{{ info }}</pre>
-            <button v-on:click="get_message">Reverse Message</button>
+        <div class="main-container">
+            <div id="app1" class="sidebar">
+                <p>{{ content }}</p>
+                <pre>{{ info }}</pre>
+                <button v-on:click="get_message">Reverse Message</button>
+            </div>
+            <div id="app2" class="article">
+                <h1>aaa</h1>
+            </div>
         </div>
     </body>
 </html>
