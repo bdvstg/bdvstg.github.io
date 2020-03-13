@@ -10,6 +10,11 @@
                 <p>{{ content }}</p>
                 <pre>{{ info }}</pre>
                 <button v-on:click="get_message">Reverse Message</button>
+                <ol>
+                    <li v-for="todo in todos" v-bind:qqq="todo.aaa" v-on:click="go_link">
+                      {{ todo.text }}
+                    </li>
+                </ol>
             </div>
             <div id="app2" class="article">
                 <h1>aaa</h1>
@@ -25,13 +30,23 @@
         el: '#app1',
         data:{
             content: window.location,
-            info: 'default info'
+            info: 'default info',
+            todos: [
+                { text: 'Learn JavaScript', aaa: "aaa" },
+                { text: 'Learn Vue', aaa: "bbb" },
+                { text: 'Build something awesome', aaa: "aaa" }
+            ]
         },
         methods: {
             get_message: function(){
-                axios
-                .get('./README.md')
-                .then(response => (this.info = response.data))
+                this.todos = [
+                { text: 'Learn JavaScript', aaa: "aaa" },
+                { text: 'Learn Vue', aaa: "ddd" },
+                { text: 'Build something awesome', aaa: "cccccc" }
+            ]
+            },
+            go_link: function(e){
+                console.log(e.currentTarget.getAttribute('qqq'));
             }
         }
     })
