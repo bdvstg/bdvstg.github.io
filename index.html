@@ -1,8 +1,9 @@
 
 <html>
-    <head>
+    <head id="head">
         <title>Hi there</title>
         <link rel="stylesheet" href="frame.css">
+        <base v-bind:href="root">
     </head>
     <body>
         <div class="main-container">
@@ -28,6 +29,10 @@
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.js"></script>
 <script>
     var converter = new showdown.Converter();
+    var app_head=new Vue({
+        el: '#head',
+        data:{root: window.location}
+    })
     var app2=new Vue({
         el: '#app2',
         data:{content: "aaa"}
@@ -53,8 +58,9 @@
 
                 console.log(link+nocache);
                 axios
-                .get(link+nocache)
+                .get(window.location+link+nocache)
                 .then(response => {
+                    app_head.root=window.location+link;
                     html = converter.makeHtml(response.data);
                     app2.content = html;
                 })
