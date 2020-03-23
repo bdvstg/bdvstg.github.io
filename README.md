@@ -10,6 +10,7 @@ a example of "How to use GitHub and Markdown as blogging platform"
 - article with label
 - Windows compatible (Git built-in MINGW64)
 - split view
+- syntax highlighting to markdown's code block
 
 ## using
 
