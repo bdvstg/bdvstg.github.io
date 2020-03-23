@@ -11,13 +11,13 @@
                 <pre>{{ info }}</pre>
                 <button v-on:click="get_message">Reverse Message</button>
                 <ol>
-                    <li v-for="todo in todos" v-bind:qqq="todo.aaa" v-on:click="go_link">
+                    <li v-for="todo in todos" v-bind:href="todo.path" v-on:click="go_link">
                       {{ todo.text }}
                     </li>
                 </ol>
             </div>
             <div id="app2" class="article">
-                <h1>aaa</h1>
+                {{ content }}
             </div>
         </div>
     </body>
@@ -26,27 +26,37 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
 <script>
+    var app2=new Vue({
+        el: '#app2',
+        data:{content: "aaa"}
+    })
     var app1=new Vue({
         el: '#app1',
         data:{
             content: window.location,
             info: 'default info',
             todos: [
-                { text: 'Learn JavaScript', aaa: "aaa" },
-                { text: 'Learn Vue', aaa: "bbb" },
-                { text: 'Build something awesome', aaa: "aaa" }
+                { text: 'Learn JavaScript', path: "aaa" },
+                { text: 'Learn Vue', path: "bbb" },
+                { text: 'Build something awesome', path: "aaa" }
             ]
         },
         methods: {
             get_message: function(){
-                this.todos = [
-                { text: 'Learn JavaScript', aaa: "aaa" },
-                { text: 'Learn Vue', aaa: "ddd" },
-                { text: 'Build something awesome', aaa: "cccccc" }
-            ]
+                axios
+                .get('./list.json')
+                .then(response => {
+                    this.todos = response.data.list;
+                })
             },
             go_link: function(e){
-                console.log(e.currentTarget.getAttribute('qqq'));
+                link = e.currentTarget.getAttribute('href');
+                console.log(link);
+                axios
+                .get(link)
+                .then(response => {
+                    app2.content = response.data;
+                })
             }
         }
     })
