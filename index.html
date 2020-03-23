@@ -58,6 +58,13 @@
                     app2.content = response.data;
                 })
             }
+        },
+        beforeMount(){
+            axios
+            .get('./list.json')
+            .then(response => {
+                this.todos = response.data.list;
+            })
         }
     })
 
