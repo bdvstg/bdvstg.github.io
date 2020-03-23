@@ -8,13 +8,13 @@
         <div class="main-container">
             <div id="app1" class="sidebar">
                 <p>{{ content }}</p>
-                <pre>{{ info }}</pre>
-                <button v-on:click="get_message">Reverse Message</button>
-                <ol>
+                <ul>
                     <li v-for="todo in todos" v-bind:href="todo.path" v-on:click="go_link">
                       {{ todo.text }}
                     </li>
-                </ol>
+                </ul>
+                <button v-on:click="btn_debug">Reverse Message</button>
+                <pre>{{ info }}</pre>
             </div>
             <div id="app2" class="article">
                 {{ content }}
@@ -40,12 +40,8 @@
             ]
         },
         methods: {
-            get_message: function(){
-                axios
-                .get('./list.json')
-                .then(response => {
-                    this.todos = response.data.list;
-                })
+            btn_debug: function(){
+                console.log("eeeeeeeeee");
             },
             go_link: function(e){
                 link = e.currentTarget.getAttribute('href');
