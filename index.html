@@ -9,8 +9,8 @@
             <div id="app1" class="sidebar">
                 <p>{{ content }}</p>
                 <ul>
-                    <li v-for="todo in todos" v-bind:href="todo.path" v-on:click="go_link">
-                      {{ todo.text }}
+                    <li v-for="item in list" v-bind:href="item.path" v-on:click="go_link">
+                      {{ item.text }}
                     </li>
                 </ul>
                 <button v-on:click="btn_debug">Reverse Message</button>
@@ -35,7 +35,7 @@
         data:{
             content: window.location,
             info: 'default info',
-            todos: [
+            list: [
                 { text: '', path: "" }
             ]
         },
@@ -57,7 +57,7 @@
             axios
             .get('./list.json')
             .then(response => {
-                this.todos = response.data.list;
+                this.list = response.data.list;
             })
         }
     })
