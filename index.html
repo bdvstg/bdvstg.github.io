@@ -16,7 +16,7 @@
                 <button v-on:click="btn_debug">Reverse Message</button>
                 <pre>{{ info }}</pre>
             </div>
-            <div id="app2" class="article">
+            <div id="app2" class="article" v-html="content">
                 {{ content }}
             </div>
         </div>
@@ -25,7 +25,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.js"></script>
 <script>
+    var converter = new showdown.Converter();
     var app2=new Vue({
         el: '#app2',
         data:{content: "aaa"}
@@ -49,7 +51,8 @@
                 axios
                 .get(link)
                 .then(response => {
-                    app2.content = response.data;
+                    html = converter.makeHtml(response.data);
+                    app2.content = html;
                 })
             }
         },
