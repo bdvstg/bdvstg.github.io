@@ -47,9 +47,13 @@
             },
             go_link: function(e){
                 link = e.currentTarget.getAttribute('href');
-                console.log(link);
+
+                // add timestamp to disable cache
+                nocache = `?timestamp=${new Date().getTime()}`;
+
+                console.log(link+nocache);
                 axios
-                .get(link)
+                .get(link+nocache)
                 .then(response => {
                     html = converter.makeHtml(response.data);
                     app2.content = html;
