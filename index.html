@@ -1,26 +1,21 @@
 
 <html>
-    <head id="head">
-        <title>Hi there</title>
+    <head>
+        <title>Markdown Blog</title>
         <link rel="stylesheet" href="frame.css">
         <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
         <base v-bind:href="root">
     </head>
     <body>
-        <div class="main-container">
-            <div id="app1" class="sidebar">
-                <p>{{ content }}</p>
-                <ul>
-                    <li v-for="item in list" v-bind:href="item.path" v-on:click="go_link">
-                      {{ item.text }}
-                    </li>
-                </ul>
-                <button v-on:click="btn_debug">Reverse Message</button>
-                <pre>{{ info }}</pre>
-            </div>
-            <div id="app2" class="article" v-html="content">
-                {{ content }}
-            </div>
+        <div id="sidebar" class="sticky">
+            <ul>
+                <li v-for="item in list" v-bind:href="item.path" v-on:click="go_link">
+                    {{ item.text }}
+                </li>
+            </ul>
+        </div>
+        <div id="article" v-html="content">
+            {{ content }}
         </div>
     </body>
 </html>
@@ -42,18 +37,16 @@
         }
     });
     var app_head=new Vue({
-        el: '#head',
+        el: 'head',
         data:{root: window.location}
     })
-    var app2=new Vue({
-        el: '#app2',
-        data:{content: "aaa"}
+    var article=new Vue({
+        el: '#article',
+        data:{content: ""}
     })
-    var app1=new Vue({
-        el: '#app1',
+    var sidebar=new Vue({
+        el: '#sidebar',
         data:{
-            content: window.location,
-            info: 'default info',
             list: [
                 { text: '', path: "" }
             ]
@@ -74,7 +67,7 @@
                 .then(response => {
                     app_head.root=window.location+link;
                     html = md.render(response.data);
-                    app2.content = html;
+                    article.content = html;
                 })
             }
         },
