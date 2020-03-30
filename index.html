@@ -71,7 +71,7 @@
                 })
             }
         },
-        beforeMount: function() {
+        beforeCreate: function() {
             axios
             .get('./list.json')
             .then(response => {

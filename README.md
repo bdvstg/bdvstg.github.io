@@ -11,13 +11,15 @@ a example of "How to use GitHub and Markdown as blogging platform"
 - Windows compatible (Git built-in MINGW64)
 - split view
 - syntax highlighting to markdown's code block
+- history of article
 
 ## using
 
 - javascript
   - vue (UI)
   - axios (fetch)
-  - a library that convert markdown to html
+  - markdown-it (convert markdown to html with syntax highlight callback)
+  - highlightjs (syntax highlight)
 - git
 - bash (for create list)
 - python (for test locally)
@@ -31,6 +33,9 @@ a example of "How to use GitHub and Markdown as blogging platform"
 - fetch markdown file from github
 - convert markdown to html
 - show to specific split view
+- history of article
+  - use git to build list of history of folder
+  - switch to specific github/tree(or commit?)
 
 ## note
 
