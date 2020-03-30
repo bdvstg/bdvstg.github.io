@@ -3,6 +3,7 @@
     <head id="head">
         <title>Hi there</title>
         <link rel="stylesheet" href="frame.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
         <base v-bind:href="root">
     </head>
     <body>
@@ -27,8 +28,18 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
 <script>
-    var md = window.markdownit();
+    var md = window.markdownit({
+        highlight: function (str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return hljs.highlight(lang, str).value;
+                } catch (__) {}
+            }
+            return ''; // use external default escaping
+        }
+    });
     var app_head=new Vue({
         el: '#head',
         data:{root: window.location}
