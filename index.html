@@ -26,9 +26,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.js"></script>
 <script>
-    var converter = new showdown.Converter();
+    var md = window.markdownit();
     var app_head=new Vue({
         el: '#head',
         data:{root: window.location}
@@ -61,7 +61,7 @@
                 .get(window.location+link+nocache)
                 .then(response => {
                     app_head.root=window.location+link;
-                    html = converter.makeHtml(response.data);
+                    html = md.render(response.data);
                     app2.content = html;
                 })
             }
