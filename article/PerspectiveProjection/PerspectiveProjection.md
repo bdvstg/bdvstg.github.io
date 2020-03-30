@@ -5,12 +5,14 @@ so we just show the concepts, no details about how to use.
 glm provide a convenience function `perspective`, it create a Perspective Projection
 matrix from FOV, distance to near/far plane, aspective ratio.
 
+```c++
     glm::mat4x4 glm::perspective(
         float fov,    // Field Of View
         float aspect, // aspective ratio
         float near,   // distance from virtual camera to near plane
         float far     // distance from virtual camera to near plane
     )
+```
 
 Hypothesis your eye/camera is lookAt to a direction, perspective projecttion matrix
 will only keep the things inside the region

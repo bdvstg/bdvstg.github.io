@@ -3,12 +3,14 @@
 glm provide a convenience function `lookAt` to calculate view matrix  
 the prototype is show below
 
+```c++
     glm::mat4x4 glm::lookAt(
         glm::vec3 eye,
         glm::vec3 center,
         glm::vec3 up
     )
     // in glm, mat4 is alias to mat4x4, so it same
+```
 
 the ideal is :
 
@@ -23,11 +25,13 @@ the ideal is :
 _notice:_ vector from `eye` to `center` can not same as `up`, else it will get NaN value, but
 you can add a very small value. the simplest sample show below :
 
+```c++
     glm::mat4 viewMatrix = glm::lookAt(
             glm::vec3(0.f, 0.f - 1e-10, 650.f),
             glm::vec3(0.f, 0.f,         0.f),
             glm::vec3(0.f, 0.f,         1.f)
         );
+```
 
 ## Rotate Around Center
 
@@ -36,6 +40,7 @@ you can add a very small value. the simplest sample show below :
 glm provide a convenience function named eulerAngleZX, it create a transform
 matrix that rotate point along z-axis and x-axis
 
+```c++
     glm::vec3 center(0.f, 0.f, 200.f); // center of lookAt
     // in eulerAngleZX.fig, center is at (0.f, 0.f, 0.f)
     // but in this snippet, we set in to (0.f, 0.f, 200.f) for a better behavior of operation
@@ -55,3 +60,4 @@ matrix that rotate point along z-axis and x-axis
         center + rotated.xyz(),
         center,
         glm::vec3(0.0f, 0.0f, 1.0f));
+```
