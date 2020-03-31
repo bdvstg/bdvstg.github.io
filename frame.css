@@ -17,6 +17,13 @@
     margin-left: 0;
 }
 
+#version {
+    position: fixed;
+    float: right;
+    top: 0;
+    right: 0;
+}
+
 .sticky {
     position: fixed;
 }
