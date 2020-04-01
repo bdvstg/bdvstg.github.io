@@ -43,6 +43,8 @@
     });
     var gList;
     var gCurArticleIdx;
+    var gUsername;
+    var gUrlHistory;
     var app_head = new Vue({
         el: 'head',
         data:{root: window.location}
@@ -60,10 +62,17 @@
             switch_to: function(e) {
                 sha = e.target.value;
                 link = gList[gCurArticleIdx].path;
-                // https://raw.githubusercontent.com/<user>/<repo>/<sha>/
+
+                // https://<user>.github.io
+                // https://raw.githubusercontent.com/<user>/<user>.github.io/<sha>/
+                // https://raw.githubusercontent.com/bdvstg/bdvstg.github.io/master/index.html
                 // add timestamp to disable cache
+                if(!gUsername || !gUrlHistory) {
+                    alert("not in github.io, do nothing");
+                    return;
+                }
                 nocache = `?timestamp=${new Date().getTime()}`;
-                histy_root = window.location+"tree/"+sha+"/";
+                histy_root = gUrlHistory + sha + "/";
                 go = histy_root+link+nocache;
                 console.log(go);
                 axios
@@ -114,6 +123,12 @@
             axios
             .get('./list.json')
             .then(response => {
+                let url = window.location;
+                let tag = url.match(/^https:\/\/(\w*)\.github.io/);
+                if(tag && tag[1]) {
+                    gUsername = tag[1];
+                    gUrlHistory = "https://raw.githubusercontent.com/" + gUsername + "/" + gUsername + ".github.io/";
+                }
                 this.list = response.data.list;
                 gList = response.data.list;
             })
