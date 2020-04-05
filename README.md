@@ -1,17 +1,22 @@
 # MDBlog - Markdown Blog
 
-a example of "How to use GitHub and Markdown as blogging platform"
+a project of "Use GitHub/Markdown as blogging platform"
 
-## target
+## feature
 
 - simple and tiny (for programmer)
 - write blog using markdown
 - article stored in github
-- article with label
 - Windows compatible (Git built-in MINGW64)
-- split view
+  - I'm current using win10 git 2.23.0
 - syntax highlighting to markdown's code block
-- history of article
+- history of article (works only github.io)
+
+## target
+
+- article with label
+- split view
+- search (works only github.io)
 
 ## using
 
@@ -21,21 +26,23 @@ a example of "How to use GitHub and Markdown as blogging platform"
   - markdown-it (convert markdown to html with syntax highlight callback)
   - highlightjs (syntax highlight)
 - git
-- bash (for create list)
+- perl (for create list)
+  - JSON::PP (convert to json format, should be built-in in git 2.23.0)
 - python (for test locally)
 
 ## brief
 
-- bash script create list (index) of article and label
+- perl script create list (index) of article and label
 - push all to github
 - axios fetch list from github, vue show to list view
 - user click a article in list view
 - fetch markdown file from github
 - convert markdown to html
 - show to specific split view
+- github provide search function and tree snapshot function
 - history of article
-  - use git to build list of history of folder
-  - switch to specific github/tree(or commit?)
+  - use git to build list of history (sha hash) of folder
+  - switch to specific github/tree
 
 ## note
 
