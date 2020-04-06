@@ -1,4 +1,4 @@
-# ViewMatrix {#ViewMatrix}
+# ViewMatrix
 
 glm provide a convenience function `lookAt` to calculate view matrix  
 the prototype is show below

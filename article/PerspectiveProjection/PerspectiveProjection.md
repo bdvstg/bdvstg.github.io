@@ -1,4 +1,4 @@
-# PerspectiveProjection {#PerspectiveProjection}
+# PerspectiveProjection
 
 Perspective projection will be apply by [AroundView3D],
 so we just show the concepts, no details about how to use.  
@@ -36,5 +36,3 @@ there is several important parameters
 ![FOV](img/pp_fov.png)
 
 - `aspect` will be setup by [AroundView3D], so here do not introduce.
-
-[AroundView3D]: @ref AVM::AroundView3d
