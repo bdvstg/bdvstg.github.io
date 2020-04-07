@@ -10,3 +10,11 @@
 3. script always convert label into lowercase to do operation
 
 but I'm not sure which is better, put into a meta-file or embedded into md file
+
+## search
+
+example of usage of github search api  
+<https://api.github.com/search/code?q=perspective+repo:bdvstg/bdvstg.github.io>
+
+according to <https://developer.github.com/v3/search/#search-repositories>  
+for unauthenticated user, 10 requests per minute
