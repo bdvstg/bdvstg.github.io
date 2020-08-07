@@ -120,8 +120,9 @@
             }
         },
         beforeCreate: function() {
+            nocache = `?timestamp=${new Date().getTime()}`;
             axios
-            .get('./list.json')
+            .get('./list.json'+nocache)
             .then(response => {
                 let url = window.location.href;
                 let tag = url.match(/^https:\/\/(\w*)\.github.io/);
